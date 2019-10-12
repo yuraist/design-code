@@ -11,16 +11,10 @@ import SwiftUI
 struct ContentView: View {
   var body: some View {
     ZStack {
-      VStack {
-        HStack {
-          Text("Certificates")
-            .font(.largeTitle)
-            .fontWeight(.heavy)
-          Spacer()
-        }
-        Image("Illustration5")
-        Spacer()
-      }.padding()
+      
+      TitleView()
+      
+      CardBottomView()
       
       CardView()
         .offset(x: 0, y: -40)
@@ -92,5 +86,42 @@ struct CertificateView: View {
     .background(Color.black)
     .cornerRadius(15)
     .shadow(radius: 20)
+  }
+}
+
+struct TitleView: View {
+  var body: some View {
+    VStack {
+      HStack {
+        Text("Certificates")
+          .font(.largeTitle)
+          .fontWeight(.heavy)
+        Spacer()
+      }
+      Image("Illustration5")
+      Spacer()
+    }.padding()
+  }
+}
+
+struct CardBottomView: View {
+  var body: some View {
+    VStack(spacing: 20) {
+      Rectangle()
+        .frame(width: 60, height: 6)
+        .cornerRadius(3.0)
+        .opacity(0.1)
+      
+      Text("This certificate is proof that Yura Istomin has achieved the UI Design course with approval from a Design+Code intructor.")
+      
+      Spacer()
+    }
+    .frame(minWidth: 0, maxWidth: .infinity)
+    .padding()
+    .padding(.horizontal)
+    .background(Color.white)
+    .cornerRadius(30)
+    .shadow(radius: 20)
+    .offset(y: 600)
   }
 }
