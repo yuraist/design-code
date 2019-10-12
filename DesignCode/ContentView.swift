@@ -9,34 +9,48 @@
 import SwiftUI
 
 struct ContentView: View {
+  
+  @State var show = false
+  
   var body: some View {
+    
     ZStack {
       
       TitleView()
+        .blur(radius: show ? 20 : 0)
+        .animation(.default)
       
       CardBottomView()
+        .blur(radius: show ? 20 : 0)
+        .animation(.default)
       
       CardView()
-        .offset(x: 0, y: -40)
+        .offset(x: 0, y: show ? -300 : -40)
         .scaleEffect(0.85)
-        .rotationEffect(Angle(degrees: 15))
-        .rotation3DEffect(Angle(degrees: 50),
-                          axis: (x: 10, y: 10, z: 10))
+        .rotationEffect(Angle(degrees: show ? 15 : 0))
+//        .rotation3DEffect(Angle(degrees: show ? 50 : 0),
+//                          axis: (x: 10, y: 10, z: 10))
         .blendMode(.hardLight)
-
+        .animation(.easeOut(duration: 0.5))
+      
       CardView()
-        .offset(x: 0, y: -20)
+        .offset(x: 0, y: show ? -150 : -20)
         .scaleEffect(0.9)
-        .rotationEffect(Angle(degrees: 10))
-        .rotation3DEffect(Angle(degrees: 40),
-                          axis: (x: 10, y: 10, z: 10))
+        .rotationEffect(Angle(degrees: show ? 10 : 0))
+//        .rotation3DEffect(Angle(degrees: show ? 40 : 0),
+//                          axis: (x: 10, y: 10, z: 10))
         .blendMode(.hardLight)
+        .animation(.easeOut(duration: 0.5))
       
       CertificateView()
         .scaleEffect(0.95)
-        .rotationEffect(Angle(degrees: 5))
-        .rotation3DEffect(Angle(degrees: 30),
-                          axis: (x: 10, y: 10, z: 10))
+        .rotationEffect(Angle(degrees: show ? 5 : 0))
+//        .rotation3DEffect(Angle(degrees: show ? 30 : 0),
+//                          axis: (x: 10, y: 10, z: 10))
+        .animation(.spring())
+        .onTapGesture {
+          self.show.toggle()
+        }
     }
   }
 }
