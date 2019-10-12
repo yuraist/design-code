@@ -11,16 +11,38 @@ import SwiftUI
 struct ContentView: View {
   var body: some View {
     ZStack {
+      VStack {
+        HStack {
+          Text("Certificates")
+            .font(.largeTitle)
+            .fontWeight(.heavy)
+          Spacer()
+        }
+        Image("Illustration5")
+        Spacer()
+      }.padding()
+      
       CardView()
         .offset(x: 0, y: -40)
         .scaleEffect(0.85)
-      
+        .rotationEffect(Angle(degrees: 15))
+        .rotation3DEffect(Angle(degrees: 50),
+                          axis: (x: 10, y: 10, z: 10))
+        .blendMode(.hardLight)
+
       CardView()
         .offset(x: 0, y: -20)
         .scaleEffect(0.9)
+        .rotationEffect(Angle(degrees: 10))
+        .rotation3DEffect(Angle(degrees: 40),
+                          axis: (x: 10, y: 10, z: 10))
+        .blendMode(.hardLight)
       
       CertificateView()
         .scaleEffect(0.95)
+        .rotationEffect(Angle(degrees: 5))
+        .rotation3DEffect(Angle(degrees: 30),
+                          axis: (x: 10, y: 10, z: 10))
     }
   }
 }
@@ -34,7 +56,7 @@ struct ContentView_Previews: PreviewProvider {
 struct CardView: View {
   var body: some View {
     VStack {
-      Text("Placeholder")
+      Text("Background Card")
     }
     .frame(width: 340, height: 220)
     .background(Color.blue)
