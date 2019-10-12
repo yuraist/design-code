@@ -10,28 +10,19 @@ import SwiftUI
 
 struct Home: View {
   
-  let menuItems = [
-    Menu(title: "My Account", icon: "person.crop.circle"),
-    Menu(title: "Billing", icon: "creditcard"),
-    Menu(title: "Team", icon: "person.2"),
-    Menu(title: "Sign out", icon: "arrow.uturn.down")
-  ]
+  @State var show = false
   
   var body: some View {
     
-    VStack(alignment: .leading) {
-      ForEach(menuItems) { item in
-        MenuRow(image: item.icon, text: item.title)
+    ZStack {
+      Button(action: {
+        self.show.toggle()
+      }) {
+        Text("Open menu")
       }
-      Spacer()
+      
+      MenuView(show: $show)
     }
-    .padding(.top, 20)
-    .padding(30)
-    .frame(minWidth: 0, maxWidth: .infinity)
-    .background(Color.white)
-    .cornerRadius(30)
-    .padding(.trailing, 60)
-    .shadow(radius: 20)
     
   }
 }
@@ -66,4 +57,38 @@ struct Menu: Identifiable {
   var id = UUID()
   var title: String
   var icon: String
+}
+
+struct MenuView: View {
+  
+  let menuItems = [
+    Menu(title: "My Account", icon: "person.crop.circle"),
+    Menu(title: "Billing", icon: "creditcard"),
+    Menu(title: "Team", icon: "person.2"),
+    Menu(title: "Sign out", icon: "arrow.uturn.down")
+  ]
+  
+  @Binding var show: Bool
+  
+  var body: some View {
+    VStack(alignment: .leading) {
+      ForEach(menuItems) { item in
+        MenuRow(image: item.icon, text: item.title)
+      }
+      Spacer()
+    }
+    .padding(.top, 20)
+    .padding(30)
+    .frame(minWidth: 0, maxWidth: .infinity)
+    .background(Color.white)
+    .cornerRadius(30)
+    .padding(.trailing, 60)
+    .shadow(radius: 20)
+    .rotation3DEffect(Angle(degrees: show ? 0 : 60), axis: (x: 0, y: 10, z: 0))
+    .animation(.default)
+    .offset(x: show ? 0 : -UIScreen.main.bounds.width)
+    .onTapGesture {
+      self.show.toggle()
+    }
+  }
 }
