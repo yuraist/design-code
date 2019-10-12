@@ -13,11 +13,14 @@ struct ContentView: View {
     ZStack {
       CardView()
         .offset(x: 0, y: -40)
+        .scaleEffect(0.85)
       
       CardView()
         .offset(x: 0, y: -20)
+        .scaleEffect(0.9)
       
       CertificateView()
+        .scaleEffect(0.95)
     }
   }
 }
