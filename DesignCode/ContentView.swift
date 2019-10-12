@@ -10,28 +10,42 @@ import SwiftUI
 
 struct ContentView: View {
   var body: some View {
-    VStack {
-      HStack {
-        VStack(alignment: .leading) {
-          Text("UI Design")
-            .font(.largeTitle)
-            .fontWeight(.bold)
-            .foregroundColor(Color("accent"))
-            .padding(.top)
-          Text("Certificate")
-            .foregroundColor(.white)
-        }
-        Spacer()
-        Image("Logo")
-          .resizable()
-          .frame(width: 30.0, height: 30.0)
+    ZStack {
+      VStack {
+        Text("Placeholder")
       }
-      .padding(.horizontal)
-      Image("Background")
+      .frame(width: 300, height: 220)
+      .background(Color.blue)
+      .cornerRadius(15)
+      .shadow(radius: 20)
+      .offset(x: 0, y: -20)
+      
+      VStack {
+        HStack {
+          VStack(alignment: .leading) {
+            Text("UI Design")
+              .font(.headline)
+              .fontWeight(.bold)
+              .foregroundColor(Color("accent"))
+              .padding(.top)
+            Text("Certificate")
+              .font(.body)
+              .foregroundColor(.white)
+          }
+          Spacer()
+          Image("Logo")
+            .resizable()
+            .frame(width: 30.0, height: 30.0)
+        }
+        .padding(.horizontal)
+        Spacer()
+        Image("Background")
+      }
+      .frame(width: 340.0, height: 220)
+      .background(Color.black)
+      .cornerRadius(15)
+      .shadow(radius: 20)
     }
-    .frame(width: 340.0, height: 220)
-    .background(Color.black)
-    .cornerRadius(15)
   }
 }
 
