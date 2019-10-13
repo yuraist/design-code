@@ -16,8 +16,10 @@ struct Home: View {
   var body: some View {
     
     ZStack {
+      
+      HomeList()
+      
       ContentView()
-        .background(Color.white)
         .cornerRadius(30)
         .shadow(radius: 20)
         .animation(.spring())
