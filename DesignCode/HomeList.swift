@@ -28,25 +28,43 @@ struct HomeList: View {
   @State var showingModal = false
   
   var body: some View {
-    
-    ScrollView(.horizontal, showsIndicators: false) {
-      HStack(spacing: 30) {
-        ForEach(courses) { course in
-          
-          Button(action: {
-            self.showingModal.toggle()
-          }) {
-            CourseView(course: course)
-          }.sheet(isPresented: self.$showingModal) {
-            ContentView()
-          }
-          
-        }
-      }
-      .padding(.leading, 10)
+    VStack {
       
-      Spacer()
+      HStack {
+        VStack(alignment: .leading) {
+          Text("Courses")
+            .font(.largeTitle)
+            .fontWeight(.heavy)
+          
+          Text("22 courses")
+            .foregroundColor(.gray)
+        }
+        
+        Spacer()
+      }
+      .padding(.leading, 70)
+      .padding(.bottom, 40)
+      
+      ScrollView(.horizontal, showsIndicators: false) {
+        HStack(spacing: 30) {
+          ForEach(courses) { course in
+            
+            Button(action: {
+              self.showingModal.toggle()
+            }) {
+              CourseView(course: course)
+            }.sheet(isPresented: self.$showingModal) {
+              ContentView()
+            }
+            
+          }
+        }
+        .padding(.leading, 40)
+        
+        Spacer()
+      }
     }
+    .padding(.top, 78)
   }
 }
 
@@ -66,16 +84,17 @@ struct CourseView: View {
         .font(.title)
         .fontWeight(.bold)
         .foregroundColor(.white)
-        .padding(20)
-
+        .padding(30)
+        .padding(.trailing, 50)
+        
       Spacer()
       
       Image(course.image)
         .resizable()
         .renderingMode(.original)
         .aspectRatio(contentMode: .fit)
-        .frame(width: 246, height: 200)
-        .padding(.bottom, 30)
+        .frame(width: 246, height: 150)
+        .padding(.bottom, 20)
     }
     .background(course.color)
     .cornerRadius(30)
